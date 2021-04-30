@@ -25,7 +25,7 @@ const List<String> currenciesList = [
   'ZAR'
 ];
 
-const List<String> cryptoList = ['BTC', 'ETH', 'LTC'];
+const List<String> cryptoList = ['BTC', 'ETH', 'DOGE'];
 
 const coinAPIURL = 'https://rest.coinapi.io/v1/exchangerate';
 const apiKey = '97D895AF-7E6B-45FE-AEB6-3E634B88DD8B';
@@ -37,9 +37,11 @@ class CoinData {
     Map<String, String> cryptoPrices = {};
     for (String crypto in cryptoList) {
       //Update the URL to use the crypto symbol from the cryptoList
-      String requestURL =
-          '$coinAPIURL/$crypto/$selectedCurrency?apikey=$apiKey';
-      http.Response response = await http.get(requestURL);
+      // String requestURL =
+      //     '$coinAPIURL/$crypto/$selectedCurrency?apikey=$apiKey';
+      var url =
+          Uri.parse('$coinAPIURL/$crypto/$selectedCurrency?apikey=$apiKey');
+      http.Response response = await http.get(url);
       if (response.statusCode == 200) {
         var decodedData = jsonDecode(response.body);
         double lastPrice = decodedData['rate'];

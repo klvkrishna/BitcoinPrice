@@ -9,7 +9,7 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  String selectedCurrency = 'AUD';
+  String selectedCurrency = 'INR';
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -100,44 +100,48 @@ class _PriceScreenState extends State<PriceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('🤑 Coin Ticker'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          //3: You'll need to use a Column Widget to contain the three CryptoCards.
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              CryptoCard(
-                cryptoCurrency: 'BTC',
-                //7. Finally, we use a ternary operator to check if we are waiting and if so, we'll display a '?' otherwise we'll show the actual price data.
-                value: isWaiting ? '?' : coinValues['BTC'],
-                selectedCurrency: selectedCurrency,
-              ),
-              CryptoCard(
-                cryptoCurrency: 'ETH',
-                value: isWaiting ? '?' : coinValues['ETH'],
-                selectedCurrency: selectedCurrency,
-              ),
-              CryptoCard(
-                cryptoCurrency: 'LTC',
-                value: isWaiting ? '?' : coinValues['LTC'],
-                selectedCurrency: selectedCurrency,
-              ),
-            ],
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.black87,
+          image: DecorationImage(
+            image: AssetImage("assets/images/bitimg2.png"),
           ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            //3: You'll need to use a Column Widget to contain the three CryptoCards.
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                CryptoCard(
+                  cryptoCurrency: 'BTC',
+                  //7. Finally, we use a ternary operator to check if we are waiting and if so, we'll display a '?' otherwise we'll show the actual price data.
+                  value: isWaiting ? '?' : coinValues['BTC'],
+                  selectedCurrency: selectedCurrency,
+                ),
+                CryptoCard(
+                  cryptoCurrency: 'ETH',
+                  value: isWaiting ? '?' : coinValues['ETH'],
+                  selectedCurrency: selectedCurrency,
+                ),
+                CryptoCard(
+                  cryptoCurrency: 'DOGE',
+                  value: isWaiting ? '?' : coinValues['DOGE'],
+                  selectedCurrency: selectedCurrency,
+                ),
+              ],
+            ),
 
-          Container(
-            height: 150.0,
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
-            child: Platform.isIOS ? iOSPicker() : androidDropdown(),
-          ),
-        ],
+            Container(
+              height: 80.0,
+              alignment: Alignment.center,
+              padding: EdgeInsets.only(bottom: 30.0),
+              child: Platform.isIOS ? iOSPicker() : androidDropdown(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -161,7 +165,7 @@ class CryptoCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
       child: Card(
-        color: Colors.lightBlueAccent,
+        color: Colors.black87,
         elevation: 5.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
